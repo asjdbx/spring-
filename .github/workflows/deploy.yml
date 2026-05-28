@@ -1,12 +1,12 @@
 name: Deploy Vue to GitHub Pages
 on:
   push:
-    branches: [ 博客系统 ] # 必须和你推送的分支名完全一致
+    branches: [ 博客系统 ]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # 给足推送权限
+      contents: write
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
@@ -14,11 +14,11 @@ jobs:
       - name: 安装 Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18 # 用稳定的 LTS 版本
+          node-version: 18 # 稳定 LTS 版本，避免兼容性问题
           cache: 'npm'
 
       - name: 安装依赖
-        run: npm ci # 用 ci 命令更稳定，避免版本不一致
+        run: npm ci
 
       - name: 打包项目
         run: npm run build
