@@ -1,0 +1,1 @@
+import{a9 as a,r as t}from"./index-SD8cd9Mf.js";const f=a("userInfo",()=>{const e=t({}),n=t({todayReading:0});return{info:e,infos:n,setInfo:o=>{e.value=o},removeInfo:()=>{e.value={}},updateTodayReading:o=>{n.value.todayReading=Number(o)||0}}},{persist:!0});export{f as u};
