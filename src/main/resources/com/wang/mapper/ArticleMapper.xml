@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.mapper.ArticleMapper" >
+    <select id="list" resultType="com.wang.popj.Article">
+        select * from article
+        <where>
+            <if test="categoryId!=null">
+                            category_id=#{categoryId}
+            </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+
+        and  create_user=#{userid}
+        </where>
+    </select>
+
+    <select id="listAll" resultType="com.wang.popj.Article">
+        select * from article
+        <where>
+            <if test="categoryId != null">
+                category_id = #{categoryId}
+            </if>
+               and artiState = #{state}
+
+        </where>
+
+    </select>
+</mapper>
