@@ -20,6 +20,26 @@
 import axios from 'axios';
 
 import { ElMessage } from 'element-plus'
+// 1. 创建axios实例service（缺少这行就报service未定义）
+const service = axios.create({
+  baseURL: '',
+  timeout: 5000
+})
+
+// 响应错误拦截（git page只能静态页面，拦截不报错）
+service.interceptors.response.use(
+  res => res.data,
+  err => {
+    console.log('接口异常', err)
+    //  只有打包上线PROD才返回假数据、关闭弹窗
+    if (import.meta.env.PROD) {
+      return Promise.resolve({ code: 200, data: [] })
+    }
+    // 本地DEV：正常抛出错误，页面弹出服务异常（本地需要弹窗提示接口崩了）
+    return Promise.reject(err)
+  }
+)
+
 //定义一个变量,记录公共的前缀  ,  baseURL
 //const baseURL = 'http://localhost:8080';
 const baseURL = '/api';
